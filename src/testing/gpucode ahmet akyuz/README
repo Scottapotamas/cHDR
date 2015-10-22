@@ -1,0 +1,23 @@
+- This software is provided in the hopes that it may be useful for
+  some people. No guarantees are given. Use it at your own risk.
+- Please see createGPUHDR.cpp for usage information and details.
+- If you use this code in your projects, please refer to the paper:
+
+
+   @article{Akyuz2012,
+       author={Ahmet O\u{g}uz Aky\"{u}z},
+       year={2012},
+       issn={1861-8200},
+       journal={Journal of Real-Time Image Processing},
+       doi={10.1007/s11554-012-0270-9},
+       title={High dynamic range imaging pipeline on the GPU},
+       url={http://dx.doi.org/10.1007/s11554-012-0270-9},
+       publisher={Springer-Verlag},
+       keywords={High dynamic range imaging; GPU programming; Color imaging; Tone mapping; Real-time imaging},
+       pages={1-15},
+   }
+
+- For bug reports and/or questions, you can e-mail me at: akyuz@ceng.metu.edu.tr
+- Thank you!
+
+Ahmet Oguz Akyuz
