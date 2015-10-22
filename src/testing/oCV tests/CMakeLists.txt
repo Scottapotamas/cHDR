@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.8)
+project( oCVtests )
+find_package( OpenCV )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( cHDR cHDR.cpp )
+target_link_libraries( cHDR ${OpenCV_LIBS} )
