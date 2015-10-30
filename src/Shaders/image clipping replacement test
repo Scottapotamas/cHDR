@@ -1,0 +1,91 @@
+#define mixsoft 0.1		
+#define mixrange 0.6
+
+//#define CLIP_SHOW 
+ 
+vec4 lumaKey(float threshH, float threshL, vec3 tex){
+    
+    vec4 buffer = vec4(tex, 1.0);
+    
+   	float f = mixsoft/2.0;
+	float a = mixrange - f;
+	float b = mixrange + f;
+	
+    float luma = (tex.x + tex.y + tex.z) / 3.0;		//construct a grayscale from channel averages
+
+	float mask = smoothstep(a, b, luma);			//apply thresholding to luma map
+    
+    //if the abs luma value is above/below we have clipped data and should filter it out.
+    if(luma > threshH) {			
+        #ifdef CLIP_SHOW
+        	buffer = vec4(1.0,0.0,0.0, 0.0);   
+        #else
+        	buffer = vec4(0.0);   
+        #endif
+    } 
+    
+    if(luma < threshL) {			
+        #ifdef CLIP_SHOW
+        	buffer = vec4(0.0,0.0,1.0, 0.0);   
+        #else
+        	buffer = vec4(0.0);   
+        #endif
+    }
+    
+    return buffer;	//return the texture with transparent sections for clipped data
+}
+
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord ){
+	
+    vec2 uv = fragCoord.xy / iResolution.xy;// * vec2(1.0,-1.0) + vec2(0.0, 1.0);
+    vec2 m = iMouse.xy/iResolution.xy;
+
+    //input textures from webcam(s)
+    vec3 texLow = texture2D(iChannel0, uv).xyz;
+	vec3 texMid = texture2D(iChannel1, uv).xyz;
+    vec3 texHigh = texture2D(iChannel2, uv).xyz;
+    
+	   
+    //highclip, lowclip, texture   
+    //vec4 clipLow 	= lumaKey(0.8, 0.03, texLow);
+    //vec4 clipMid 	= lumaKey(0.6, 0.2, texMid);
+    //vec4 clipHigh 	= lumaKey(0.7, 0.5, texHigh);
+   
+    //use input data to merge for HDR
+    
+    float threshH = 0.85;
+    float threshL = 0.08;
+    
+    vec4 buffer = vec4(texMid, 1.0);
+    
+   	float f = mixsoft/2.0;
+	float a = mixrange - f;
+	float b = mixrange + f;
+	
+    float luma = (texMid.x + texMid.y + texMid.z) / 3.0;		//construct a grayscale from channel averages
+
+	float mask = smoothstep(a, b, luma);			//apply thresholding to luma map
+    
+    //if the abs luma value is above/below we have clipped data and should filter it out.
+    if(luma > threshH) {			
+        #ifdef CLIP_SHOW
+        	buffer = vec4(1.0,0.0,0.0, 0.0);   
+        #else
+        	buffer = vec4(texHigh, 1.0);   
+        #endif
+    } 
+    
+    if(luma < threshL) {			
+        #ifdef CLIP_SHOW
+        	buffer = vec4(0.0,0.0,1.0, 0.0);   
+        #else
+        	buffer = vec4(texLow, 1.0);   
+        #endif
+    }
+       
+    vec4 tempout = buffer;
+ 
+    	
+	fragColor = tempout;
+}

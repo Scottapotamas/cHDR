@@ -1,0 +1,9 @@
+float chromaKey(vec3 color){
+	vec3 backgroundColor = vec3(0.157, 0.576, 0.129);
+	vec3 weights = vec3(4., 1., 2.);
+
+	vec3 hsv = rgb2hsv(color);
+	vec3 target = rgb2hsv(backgroundColor);
+	float dist = length(weights * (target - hsv));
+	return 1. - clamp(3. * dist - 1.5, 0., 1.);
+}
