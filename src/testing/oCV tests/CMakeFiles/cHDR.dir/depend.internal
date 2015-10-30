@@ -10,13 +10,18 @@ CMakeFiles/cHDR.dir/cHDR.cpp.o
  /usr/local/include/opencv2/core/affine.hpp
  /usr/local/include/opencv2/core/base.hpp
  /usr/local/include/opencv2/core/bufferpool.hpp
+ /usr/local/include/opencv2/core/core.hpp
  /usr/local/include/opencv2/core/core_c.h
+ /usr/local/include/opencv2/core/cuda.hpp
+ /usr/local/include/opencv2/core/cuda.inl.hpp
+ /usr/local/include/opencv2/core/cuda_types.hpp
  /usr/local/include/opencv2/core/cvdef.h
  /usr/local/include/opencv2/core/cvstd.hpp
  /usr/local/include/opencv2/core/cvstd.inl.hpp
  /usr/local/include/opencv2/core/mat.hpp
  /usr/local/include/opencv2/core/mat.inl.hpp
  /usr/local/include/opencv2/core/matx.hpp
+ /usr/local/include/opencv2/core/opengl.hpp
  /usr/local/include/opencv2/core/operations.hpp
  /usr/local/include/opencv2/core/optim.hpp
  /usr/local/include/opencv2/core/persistence.hpp
