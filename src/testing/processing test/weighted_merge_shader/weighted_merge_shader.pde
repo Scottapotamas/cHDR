@@ -1,4 +1,6 @@
-PImage cam0;
+import processing.video.*;
+
+Capture cam0;
 PImage cam1;
 PImage cam2;
 
@@ -10,8 +12,29 @@ void setup() {
  size(720, 480, P2D);
  //frameRate(30);
 
- cam0 = loadImage("dark.JPG");
- cam1 = loadImage("normal.JPG");
+String[] cameras = Capture.list();
+  
+  if (cameras.length == 0) {
+    println("There are no cameras available for capture.");
+    exit();
+  } else {
+    println("Available cameras:");
+        
+    for (int i = 0; i < cameras.length; i++) {
+      println("Camera array index: "+i);
+      println(cameras[i]);
+    }
+  }
+    // The camera can be initialized directly using an 
+    // element from the array returned by list():
+    cam0 = new Capture(this, cameras[4]);
+    //cam1 = new Capture(this, cameras[16]);
+    
+    cam0.start();
+    //cam1.start();
+
+ //cam0 = loadImage("dark.JPG");
+ //cam1 = loadImage("normal.JPG");
  cam2 = loadImage("light.JPG");
   
  shader = loadShader("fragment.glsl");
