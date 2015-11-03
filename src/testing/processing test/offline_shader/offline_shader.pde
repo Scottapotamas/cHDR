@@ -20,9 +20,9 @@ void setup() {
  //uniforms
  shader.set("resolution", float(width), float(height));   
  shader.set("testVar", 0.2);   
- shader.set("iChannel0", cam0);
+ shader.set("iChannel0", cam2);
  shader.set("iChannel1", cam1);
- shader.set("iChannel2", cam2);
+ shader.set("iChannel2", cam0);
 
 }
 
