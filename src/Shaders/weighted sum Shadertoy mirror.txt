@@ -1,0 +1,100 @@
+
+float gamma = 0.55;
+float Cubic (float value) {
+	
+    // Possibly slightly faster calculation
+    // when compared to Sigmoid
+    
+    if (value < 0.5)
+    {
+        return value * value * value * value * value * 16.0; 
+    }
+    
+    value -= 1.0;
+    
+    return value * value * value * value * value * 16.0 + 1.0;
+}
+
+float Sigmoid (float x) {
+
+	//return 1.0 / (1.0 + (exp(-(x * 14.0 - 7.0))));
+    return 1.0 / (1.0 + (exp(-(x - 0.5) * 14.0))); 
+}
+
+float luminance(vec3 color)
+{
+    // Assuming that input color is in linear sRGB color space.
+    return (color.r * 0.2126) + 
+           (color.g * 0.7152) + 
+           (color.b * 0.0722);
+}
+
+float weight(float val)
+{
+    // Uses a tent function.
+    float w;
+
+    if (val <= 0.5)
+    {
+        w = val * 2.0;
+    }
+    else
+    {
+        w = (1.0 - val) * 2.0;
+    }
+
+    return w;
+}
+
+void mainImage( out vec4 fragColor, in vec2 fragCoord ){
+
+    vec2 uv = fragCoord.xy / iResolution.xy;// * vec2(1.0,-1.0) + vec2(0.0, 1.0);
+
+    const int refId = 1;                        ///< LDR reference image id (image with exposure = 1)
+    float weightSum = 0.0;                      ///< Sum of all weights
+    vec4 hdr        = vec4(0.0, 0.0, 0.0, 0.0); ///< Destination HDR image (last channel stores log luminance)
+
+    float lum;
+    float w;
+    float exposure;
+    vec3 ldr;
+    
+    
+    
+    ldr = texture2D(iChannel0, uv).xyz;
+    lum      = luminance(ldr);
+    w        = weight(lum);
+    exposure = pow(2.0, float(0 - refId));
+    hdr.rgb       += (ldr / exposure) * w;
+    weightSum     += w;
+
+    
+    ldr = texture2D(iChannel1, uv).xyz;
+    lum      = luminance(ldr);
+    w        = weight(lum);
+    exposure = pow(2.0, float(1 - refId));
+    hdr.rgb       += (ldr / exposure) * w;
+    weightSum     += w;
+    
+    
+   	ldr = texture2D(iChannel2, uv).xyz;
+
+    lum      = luminance(ldr);
+    w        = weight(lum);
+    exposure = pow(2.0, float(2 - refId));
+    hdr.rgb       += (ldr / exposure) * w;
+    weightSum     += w;
+    
+    
+    
+    hdr.rgb /= weightSum + 1e-6;    
+    hdr.a = log(luminance(hdr.rgb) + 1e-6);
+    
+    vec4 C = hdr;
+    //C = vec4(Cubic(C.r), Cubic(C.g),Cubic(C.b), 1.0); 
+    C = vec4(Sigmoid(C.r), Sigmoid(C.g),Sigmoid(C.b), 1.0); 
+        
+    C = pow(C, vec4(gamma)); 
+    
+    fragColor = C;
+}
