@@ -52,7 +52,7 @@ void main() {
 
   vec2 uv = fragCoord.xy / iResolution.xy * vec2(1.0,-1.0) + vec2(0.0, 1.0);
 
-  const int refId = 1;                        ///< LDR reference image id (image with exposure = 1)
+  const int refId = 2;                        ///< LDR reference image id (image with exposure = 1)
   float weightSum = 0.0;                      ///< Sum of all weights
   vec4 hdr        = vec4(0.0, 0.0, 0.0, 0.0); ///< Destination HDR image (last channel stores log luminance)
 
@@ -90,5 +90,5 @@ void main() {
   hdr.rgb /= weightSum + 1e-6;    
   hdr.a = log(luminance(hdr.rgb) + 1e-6);
 
-  gl_FragColor = vec4(ldr,1.0);//hdr;
+  gl_FragColor = hdr;
 }

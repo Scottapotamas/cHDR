@@ -26,7 +26,7 @@ vec4 fragCoord = gl_FragCoord.xyzw;
 #define mixrange 0.6
 
 
-//#define CLIP_SHOW 
+#define CLIP_SHOW 
  
 
 vec4 lumaKey(float threshH, float threshL, vec3 tex){
