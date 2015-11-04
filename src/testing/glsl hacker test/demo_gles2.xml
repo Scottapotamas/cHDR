@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<glsl_hacker>
+	
+  <window name="EGLWin3d01" title="Dark Vador Training" 
+          width="800" height="600"
+          gl_version_major="2" gl_version_minor="0"  />
+  
+  
+  <gpu_program name="tex_prog" >
+    <raw_data_vs><![CDATA[	 
+attribute vec4 gxl3d_Position;
+attribute vec4 gxl3d_TexCoord0;
+varying vec4 Vertex_UV;
+void main()
+{
+  gl_Position = gxl3d_Position;		
+  Vertex_UV = gxl3d_TexCoord0;
+}
+  ]]></raw_data_vs>
+    <raw_data_ps><![CDATA[	 
+uniform sampler2D tex0;
+varying vec4 Vertex_UV;
+void main (void)
+{
+  vec2 uv = Vertex_UV.xy;
+  uv.y *= -1.0;
+  vec3 t = texture2D(tex0,uv).rgb;
+  gl_FragColor = vec4(t, 1.0);
+}
+    ]]></raw_data_ps>
+  </gpu_program>
+  
+  
+<gpu_program name="rt_prog" >
+    <raw_data_vs><![CDATA[	 
+attribute vec4 gxl3d_Position;
+attribute vec4 gxl3d_TexCoord0;
+uniform mat4 gxl3d_ModelViewProjectionMatrix;
+varying vec4 Vertex_UV;
+void main()
+{
+  gl_Position = gxl3d_ModelViewProjectionMatrix * gxl3d_Position;		
+  Vertex_UV = gxl3d_TexCoord0;
+}
+  ]]></raw_data_vs>
+    <raw_data_ps><![CDATA[	 
+uniform sampler2D tex0;
+uniform vec2 lens_radius;
+varying vec4 Vertex_UV;
+void main ()
+{
+  vec2 uv = Vertex_UV.xy;
+  
+  // Simple INV effect just to see the difference between postfx and no postfx.
+  //
+  vec3 t0 = texture2D(tex0,uv).rgb;
+  vec3 t1 = vec3(1.0) - t0;
+  
+  float dist = distance(uv.xy, vec2(0.5,0.5));
+  float s = smoothstep(lens_radius.x, lens_radius.y, dist);  
+  
+  gl_FragColor.rgb = mix(t1, t0, s);
+  gl_FragColor.a = 1.0;
+}
+    ]]></raw_data_ps>
+  </gpu_program>
+  
+
+  
+	<script name="init_scene" run_mode="INIT" >
+		<raw_data><![CDATA[	
+    
+winW, winH = gh_window.getsize(0)
+
+
+
+local lib_dir = gh_utils.get_scripting_libs_dir() 		
+dofile(lib_dir .. "lua/gx_font.lua")
+
+local demo_dir = gh_utils.get_demo_dir()
+font_title = ftgl_load_font_v2(demo_dir .. "./EVILDEAD.ttf", 40, 2, 0)
+font1 = ftgl_load_font_v2(demo_dir .. "../common/coolvetica rg.ttf", 30, 0, 0)
+
+
+
+
+-- Render target.
+--
+rt_w = winW
+rt_h = winH
+rt01 = 0
+local num_color_targets = 1
+local linear_filtering = 1
+local clamp_addressing = 1
+local samples = 0
+rt01 = gh_render_target.create_ex_v3(rt_w, rt_h, num_color_targets, PF_U8_RGBA, linear_filtering, clamp_addressing, samples)
+
+rt_prog = gh_node.getid("rt_prog")
+gh_gpu_program.uniform1i(rt_prog, "tex0", 0)
+
+
+
+
+-- An ortho camera
+--
+camera_ortho = gh_camera.create_ortho(-1, 1, -1, 1, 1.0, 10.0)
+gh_camera.set_viewport(camera_ortho, 0, 0, winW, winH)
+gh_camera.set_position(camera_ortho, 0, 0, 4)
+
+
+
+-- A 2x2 quad that spans from -1 to 1 along the X axis
+-- and from -1 to 1 along the Y axis. Combined with the camera ortho,
+-- this quad allows to use a very simple vertex shader that does no 
+-- matrices multiplication.
+--
+mesh_quad = gh_mesh.create_quad(2, 2)
+
+
+
+-- Resources: a GPU program and a texture.
+--
+
+-- The GPU program.
+--
+tex_prog = gh_node.getid("tex_prog")
+gh_gpu_program.bind(tex_prog)
+gh_gpu_program.uniform1i(tex_prog, "tex0", 0)
+gh_gpu_program.bind(0)
+
+
+
+
+
+
+
+-- The texture.
+--
+
+local PF_U8_RGB = 1
+local PF_U8_BGR = 2
+local PF_U8_RGBA = 3
+video_total_frames = 0
+video_frames = 0
+video_duration = 0
+local abs_path = 0
+tex_video = gh_texture.video_stream_open("./Timelapse-1.m4v", abs_path, PF_U8_RGB)
+--tex_video = gh_texture.video_stream_open("./FORM.MPG", abs_path, PF_U8_RGBA)
+if (tex_video > 0) then
+  gh_texture.video_stream_grab_frame(tex_video)
+  video_duration = gh_texture.video_get_duration(tex_video)
+  video_total_frames = gh_texture.video_time_to_frame(tex_video, video_duration)
+end
+
+
+
+gh_renderer.set_vsync(1)
+gh_renderer.set_depth_test_state(1)
+
+last_time = gh_utils.get_elapsed_time()
+
+		]]></raw_data>
+	</script> 
+  
+	<script name="update_scene" run_mode="FRAME" >
+		<raw_data><![CDATA[	
+
+local elapsed_time = gh_utils.get_elapsed_time()
+
+
+
+
+gh_render_target.bind(rt01)
+
+gh_camera.bind(camera_ortho)
+
+gh_renderer.clear_color_depth_buffers(0.2, 0.2, 0.2, 1.0, 1.0)
+
+gh_texture.bind(tex_video, 0)
+
+if ((elapsed_time-last_time) > 0.1) then
+ last_time = elapsed_time
+  if (gh_texture.video_stream_grab_frame(tex_video) == 0) then
+    video_frames = 0
+    gh_texture.video_seek_frame(tex_video, 0)
+    gh_texture.video_stream_grab_frame(tex_video)
+  end
+  video_frames = video_frames+1
+end
+
+
+gh_gpu_program.bind(tex_prog)
+gh_object.render(mesh_quad)
+
+gh_render_target.bind(0)
+
+
+
+gh_renderer.set_depth_test_state(1)
+gh_renderer.clear_color_depth_buffers(0.0, 0.0, 0.0, 1.0, 1.0)
+
+gh_texture.rt_color_bind(rt01, 0)
+gh_gpu_program.bind(rt_prog)
+--local radius_x = (math.cos(elapsed_time) + 1) * 0.5
+--local radius_y = (math.sin(elapsed_time) + 1) * 0.5
+local radius = (math.cos(elapsed_time)) * 0.5
+local lens_radius = 0.5 + radius*0.25
+gh_gpu_program.uniform2f(rt_prog, "lens_radius", lens_radius, lens_radius-0.2)
+gh_object.render(mesh_quad)
+
+
+
+ftgl_begin(font_title)
+ftgl_print(font_title, 20, winH-80, 0.9, 0.9, 0.1, 1, "Dark Vador Training")
+ftgl_end(font_title)
+
+ftgl_begin(font1)
+ftgl_print(font1, 20, winH-30, 1, 1, 1, 1, "(C) 2015 Tathan Productions")
+ftgl_end(font1)
+
+		]]></raw_data>
+	</script> 
+	
+
+	<script name="resize_scene" run_mode="SIZE" >
+		<raw_data><![CDATA[	
+
+winW, winH = gh_window.getsize(0)
+
+camera_ortho = gh_camera.create_ortho(-1, 1, -1, 1, 1.0, 10.0)
+gh_camera.set_viewport(camera_ortho, 0, 0, winW, winH)
+
+ftgl_resize(winW, winH)
+
+		]]></raw_data>
+	</script> 
+  
+  
+<script name="terminate_scene" run_mode="TERMINATE" >
+		<raw_data><![CDATA[	
+ftgl_kill()
+		]]></raw_data>
+	</script> 
+  
+  
+</glsl_hacker>
+
