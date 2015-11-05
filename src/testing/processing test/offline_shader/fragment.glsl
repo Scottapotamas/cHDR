@@ -22,12 +22,35 @@ vec4 fragCoord = gl_FragCoord.xyzw;
 
 //-----------------------------------------------------
 
-#define mixsoft 0.1   
-#define mixrange 0.6
+#define mixsoft 0.01   
+#define mixrange 0.9
 
 
 //#define CLIP_SHOW 
- 
+ float luminance(vec3 color)
+{
+    // Assuming that input color is in linear sRGB color space.
+    return (color.r * 0.2126) + 
+           (color.g * 0.7152) + 
+           (color.b * 0.0722);
+}
+
+float weight(float val)
+{
+    // Uses a tent function.
+    float w;
+
+    if (val <= 0.5)
+    {
+        w = val * 2.0;
+    }
+    else
+    {
+        w = (1.0 - val) * 2.0;
+    }
+
+    return w;
+}
 
 vec4 lumaKey(float threshH, float threshL, vec3 tex){
     
@@ -80,26 +103,28 @@ void main() {
   float a = mixrange - f;
   float b = mixrange + f;
   
-  float luma = (texMid.x + texMid.y + texMid.z) / 3.0;    //construct a grayscale from channel averages
+    float luma = luminance(texMid);//(texMid.x + texMid.y + texMid.z) / 3.0;    //construct a grayscale from channel averages
 
   float mask = smoothstep(a, b, luma);      //apply thresholding to luma map
     
     //if the abs luma value is above/below we have clipped data and should filter it out.
     if(luma > threshH) {      
         #ifdef CLIP_SHOW
-          buffer = vec4(1.0,0.0,0.0, 1.0);   
+          buffer = vec4(1.0,0.0,0.0, 0.0);   
         #else
-          buffer = vec4(texHigh, 1.0);   
+        buffer = vec4(mix(texMid, texHigh, weight(luminance(texMid))), 1.);
         #endif
     } 
     
     if(luma < threshL) {      
         #ifdef CLIP_SHOW
-          buffer = vec4(0.0,0.0,1.0, 1.0);   
+          buffer = vec4(0.0,0.0,1.0, 0.0);   
         #else
-          buffer = vec4(texLow, 1.0);   
+        buffer = vec4(mix(texLow, texMid, weight(luminance(texMid))), 1.);
+      //buffer = vec4(texLow, 1.0);   
         #endif
     }
+    
         
   vec4 tempout = buffer;
   
