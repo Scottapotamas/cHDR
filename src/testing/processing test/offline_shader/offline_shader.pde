@@ -19,10 +19,12 @@ void setup() {
 
  //uniforms
  shader.set("resolution", float(width), float(height));   
- shader.set("testVar", 0.2);   
- shader.set("iChannel0", cam2);
+ shader.set("gamma_uniform", 0.2);   
+ shader.set("fps", 0.0);   
+
+ shader.set("iChannel0", cam0);
  shader.set("iChannel1", cam1);
- shader.set("iChannel2", cam0);
+ shader.set("iChannel2", cam2);
 
 }
 
@@ -38,5 +40,7 @@ void draw() {
  if (frameCount % 10 == 0) {  // every 10th frame
    println("frame: " + frameCount + " - fps: " + frameRate);
  }
+  shader.set("fps", frameRate);   
+
 
 }
