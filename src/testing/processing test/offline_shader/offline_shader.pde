@@ -8,13 +8,13 @@ boolean enabled = true;
 
 void setup() {
  size(720, 480, P2D);
- //frameRate(30);
+ frameRate(300);
 
  cam0 = loadImage("dark.JPG");
  cam1 = loadImage("normal.JPG");
  cam2 = loadImage("light.JPG");
   
- shader = loadShader("fragment.glsl");
+ shader = loadShader("fragmentmix.glsl");
   //shaders.set("fraction", 1.0);
 
  //uniforms
