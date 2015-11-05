@@ -53,8 +53,6 @@ float Sigmoid (float x) {
     return 1.0 / (1.0 + (exp(-(x - 0.5) * 14.0))); 
 }
 
-
-
  float luminance(vec3 color)
 {
     // Assuming that input color is in linear sRGB color space.
@@ -80,6 +78,11 @@ float weight(float val)
     return w;
 }
 
+vec3 changeSaturation(vec3 color, float saturation)
+{
+  float luma = luminance(color);
+  return mix(vec3(luma), color, saturation);
+}
 
 void main() {
 
@@ -106,5 +109,5 @@ void main() {
         
     C = pow(C, vec4(gamma)); 
 
-  gl_FragColor = C;
+  gl_FragColor = vec4(changeSaturation(C.xyz, 0.9), 1.0);
 }

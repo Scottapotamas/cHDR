@@ -19,7 +19,7 @@ void setup() {
 
  //uniforms
  shader.set("resolution", float(width), float(height));   
- shader.set("gamma_uniform", 0.2);   
+ shader.set("gamma_uniform", 0.35);   
  shader.set("fps", 0.0);   
 
  shader.set("iChannel0", cam0);
