@@ -1,0 +1,397 @@
+commit a7f01b16019980419a8b985eb4fe306fea6ade9a
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Nov 5 13:42:17 2015 +1030
+
+    Finished poster for print
+
+ Project Documentation/Poster.indd            | Bin 4329472 -> 4329472 bytes
+ Project Documentation/SR FYP Poster 2015.pdf | Bin 0 -> 4435189 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit f9756716067fa5b752ec27734f4d7d5bda890a75
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Nov 5 13:17:02 2015 +1030
+
+    Poster nearing completion
+
+ Project Documentation/Poster.indd | Bin 2502656 -> 4329472 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6777f10f8da9f3998df464adb6958ca002d179fb
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Nov 5 04:24:35 2015 +1030
+
+    offline weighted merge change
+
+ .../processing test/offline_shader/fragment.glsl   |  2 +-
+ .../weighted_merge_shader/fragment.glsl            |  4 +-
+ .../weighted_merge_shader.pde                      | 44 +++++++++++-----------
+ 3 files changed, 26 insertions(+), 24 deletions(-)
+
+commit da78d4b8b76a7bbcf70505e4ea0702a9bc2ddf7c
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Nov 5 04:13:22 2015 +1030
+
+    layout improvements, additional content
+
+ Project Documentation/Poster.indd    | Bin 2424832 -> 2502656 bytes
+ Project Documentation/unisa logo.png | Bin 0 -> 31967 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 250128d05ee50b766e4fbd346202f0f5df9a9e3d
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Nov 5 03:57:45 2015 +1030
+
+    poster progress
+
+ Project Documentation/Pipeline Diagram.png    | Bin 0 -> 129323 bytes
+ Project Documentation/Poster.indd             | Bin 1064960 -> 2424832 bytes
+ src/Shaders/weighted sum Shadertoy mirror.txt | 100 ++++++++++++++++++++++++++
+ 3 files changed, 100 insertions(+)
+
+commit 40b0ce656c2aa6195878ed18971de1faf313a4fe
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Wed Nov 4 23:48:13 2015 +1030
+
+    poster and glslhacker test file
+
+ Project Documentation/Poster.indd           | Bin 0 -> 1064960 bytes
+ src/testing/glsl hacker test/demo_gles2.xml | 248 ++++++++++++++++++++++++++++
+ 2 files changed, 248 insertions(+)
+
+commit 1075f6e05e88ce9c5be821ebd5865f7c436e38f0
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Wed Nov 4 01:35:43 2015 +1030
+
+    light and dark video
+
+ src/testing/dark.mp4  | Bin 0 -> 8933712 bytes
+ src/testing/light.mp4 | Bin 0 -> 9369643 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit dac91bd2ac03eec43b6c930a97e98b99eafef17c
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Tue Nov 3 18:16:06 2015 +1030
+
+    Offline test shader fixes
+
+ src/testing/processing test/offline_shader/fragment.glsl      | 2 +-
+ src/testing/processing test/offline_shader/offline_shader.pde | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 7c6bfd3fe1f076241e12ea8e9c28d1a831e8f160
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sat Oct 31 22:37:42 2015 +1030
+
+    Webcam input tests to processing
+
+ .../weighted_merge_shader.pde                      | 29 +++++++++++++++++++---
+ 1 file changed, 26 insertions(+), 3 deletions(-)
+
+commit f6a8bd860abe8cdaa6a8ab12440dc05c96934ea6
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sat Oct 31 01:14:20 2015 +1030
+
+    weighted HDR processing project
+
+ .../processing test/offline_shader/fragment.glsl   |   2 +-
+ .../processing test/weighted_merge_shader/dark.JPG | Bin 0 -> 198523 bytes
+ .../weighted_merge_shader/fragment.glsl            |  94 +++++++++++++++++++++
+ .../weighted_merge_shader/light.JPG                | Bin 0 -> 240675 bytes
+ .../weighted_merge_shader/normal.JPG               | Bin 0 -> 246209 bytes
+ .../weighted_merge_shader/vertex.glsl              |  18 ++++
+ .../weighted_merge_shader.pde                      |  42 +++++++++
+ 7 files changed, 155 insertions(+), 1 deletion(-)
+
+commit fd2e58444b08b2352d21b92199ff8b9efc5fc80a
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sat Oct 31 00:59:53 2015 +1030
+
+    Clipping detection shader ported to processing sketch
+
+ .../processing test/offline_shader/fragment.glsl   | 115 +++++++++++++++------
+ .../offline_shader/offline_shader.pde              |  29 +++---
+ 2 files changed, 98 insertions(+), 46 deletions(-)
+
+commit 5b181d53294948092c9685b73e5ce30d0cd18b92
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sat Oct 31 00:46:00 2015 +1030
+
+    processing renders shader with compatibility with shader toy uniforms
+
+ .../processing test/offline_shader/dark.JPG        | Bin 0 -> 198523 bytes
+ .../processing test/offline_shader/fragment.glsl   |  56 +++++++++++++++++++++
+ .../processing test/offline_shader/light.JPG       | Bin 0 -> 240675 bytes
+ .../processing test/offline_shader/normal.JPG      | Bin 0 -> 246209 bytes
+ .../offline_shader/offline_shader.pde              |  56 +++++++++------------
+ .../processing test/offline_shader/vertex.glsl     |  18 +++++++
+ 6 files changed, 99 insertions(+), 31 deletions(-)
+
+commit f7230545e38ba203218054eac795a8ba2f7acfe2
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sat Oct 31 00:04:08 2015 +1030
+
+    processing fragment shader 2d
+
+ .../offline_shader/offline_shader.pde              | 37 ++++++++++++++++------
+ 1 file changed, 28 insertions(+), 9 deletions(-)
+
+commit ffc65e726c2ec18c842bff05c0195080002bd67a
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Fri Oct 30 23:24:51 2015 +1030
+
+    processing import and panellise still images
+
+ .../offline_shader/offline_shader.pde              | 28 ++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+commit 70ced9a91ae19e369dc20ba8926b404e2f7fe3ba
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Fri Oct 30 23:05:38 2015 +1030
+
+    Runtime checks for platform openGL support, additional openCV imports
+
+ .../oCV tests/CMakeFiles/cHDR.dir/CXX.includecache | 50 ++++++++++++++++++++--
+ .../oCV tests/CMakeFiles/cHDR.dir/depend.internal  |  5 +++
+ .../oCV tests/CMakeFiles/cHDR.dir/depend.make      |  5 +++
+ src/testing/oCV tests/cHDR.cpp                     | 32 ++++++++++++--
+ 4 files changed, 85 insertions(+), 7 deletions(-)
+
+commit 90e0f4962e407ba267619061a50570e41050b186
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Fri Oct 30 21:35:39 2015 +1030
+
+    Brought shader work from SToy to this repo for safe keeping
+    Restructured some documentation
+
+ Project Documentation/odroid deets.md       |   1 +
+ odroid deets.md                             |   1 -
+ sandboxShader.frag                          | 118 ----------------------------
+ src/Shaders/RGBtoHSV_function               |  23 ++++++
+ src/Shaders/changeSaturation_function       |   5 ++
+ src/Shaders/chromakey_function              |   9 +++
+ src/Shaders/hdr weighted sum                |  62 +++++++++++++++
+ src/Shaders/image clipping replacement test |  91 +++++++++++++++++++++
+ src/Shaders/lumakey_function                |  31 ++++++++
+ 9 files changed, 222 insertions(+), 119 deletions(-)
+
+commit 7f2d8b82a77124f5052621fd163f3f5450003113
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Wed Oct 28 14:23:23 2015 +1030
+
+    bracketed images input to oCV test instead of webcams...
+
+ .../oCV tests/CMakeFiles/cHDR.dir/cHDR.cpp.o       | Bin 23596 -> 26324 bytes
+ src/testing/oCV tests/cHDR                         | Bin 48496 -> 48856 bytes
+ src/testing/oCV tests/cHDR.cpp                     |  94 ++++++++++-----------
+ src/testing/oCV tests/dark.JPG                     | Bin 0 -> 198523 bytes
+ src/testing/oCV tests/light.JPG                    | Bin 0 -> 240675 bytes
+ src/testing/oCV tests/normal.JPG                   | Bin 0 -> 246209 bytes
+ 6 files changed, 46 insertions(+), 48 deletions(-)
+
+commit 969219026c738bb4dec33dd1ee1b6ad2b44588ff
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sat Oct 24 18:42:40 2015 +1030
+
+    processing test,
+    didn't work on Mac Pro...
+
+ .../dual_camera_test/dual_camera_test.pde          | 47 ++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+
+commit 59cffd06d2e37b2bbb7ad7611f05613c1b0124fd
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sat Oct 24 01:06:28 2015 +1030
+
+    more stuff I forgot
+
+ src/testing/oCV tests/CMakeFiles/Makefile.cmake    |  65 ---------------
+ .../oCV tests/CMakeFiles/cHDR.dir/cHDR.cpp.o       | Bin 25672 -> 23596 bytes
+ src/testing/oCV tests/cHDR                         | Bin 48568 -> 48496 bytes
+ src/testing/oCV tests/cHDR.cpp                     |  89 +++++++++++----------
+ 4 files changed, 47 insertions(+), 107 deletions(-)
+
+commit 799e0eb552ad0d0a42e68f80dab475c8da00e667
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Fri Oct 23 18:15:53 2015 +1030
+
+    Count cameras before start, code formatting fixes
+
+ src/testing/oCV tests/cHDR.cpp | 88 ++++++++++++++++++++----------------------
+ 1 file changed, 41 insertions(+), 47 deletions(-)
+
+commit 7677694fd7cb576e0926b8f3ea35926aa2f671cd
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Fri Oct 23 18:14:41 2015 +1030
+
+    Frame layout, 3x2 grid of images with margin for easily explained output...
+    Text overplayed on frames to label them
+    Uses same camera feed for all blocks
+
+ .../oCV tests/CMakeFiles/cHDR.dir/cHDR.cpp.o       | Bin 14720 -> 25672 bytes
+ src/testing/oCV tests/cHDR                         | Bin 42236 -> 48568 bytes
+ src/testing/oCV tests/cHDR.cpp                     |  94 ++++++++++++++++-----
+ 3 files changed, 71 insertions(+), 23 deletions(-)
+
+commit e25f4748acac8d00fc5db0d18522e560760d964d
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Oct 22 22:40:03 2015 +1030
+
+    opencv webcam tests
+
+ src/testing/gpucode ahmet akyuz/Makefile           |   5 -
+ src/testing/gpucode ahmet akyuz/README             |  23 -
+ src/testing/gpucode ahmet akyuz/createHDRGPU.cpp   | 145 -----
+ src/testing/gpucode ahmet akyuz/fragHDRCreate.glsl |  64 --
+ src/testing/gpucode ahmet akyuz/fragShowHDR.glsl   |  15 -
+ src/testing/gpucode ahmet akyuz/fragTonemap.glsl   | 115 ----
+ .../gpucode ahmet akyuz/fragTonemapGlobal.glsl     |  99 ---
+ src/testing/gpucode ahmet akyuz/ogl.cpp            | 662 ---------------------
+ src/testing/gpucode ahmet akyuz/ogl.h              |  18 -
+ src/testing/gpucode ahmet akyuz/rgbe.c             | 413 -------------
+ src/testing/gpucode ahmet akyuz/rgbe.h             |  53 --
+ src/testing/gpucode ahmet akyuz/utils.cpp          | 288 ---------
+ src/testing/gpucode ahmet akyuz/utils.h            | 109 ----
+ src/testing/gpucode ahmet akyuz/vertHDRCreate.glsl |  17 -
+ src/testing/gpucode ahmet akyuz/vertShowHDR.glsl   |  17 -
+ src/testing/gpucode ahmet akyuz/vertTonemap.glsl   |  17 -
+ src/testing/oCV tests/CMakeCache.txt               | 353 +++++++++++
+ .../CMakeFiles/3.4.0-rc2/CMakeCCompiler.cmake      |  67 +++
+ .../CMakeFiles/3.4.0-rc2/CMakeCXXCompiler.cmake    |  68 +++
+ .../3.4.0-rc2/CMakeDetermineCompilerABI_C.bin      | Bin 0 -> 4304 bytes
+ .../3.4.0-rc2/CMakeDetermineCompilerABI_CXX.bin    | Bin 0 -> 4288 bytes
+ .../CMakeFiles/3.4.0-rc2/CMakeSystem.cmake         |  15 +
+ .../3.4.0-rc2/CompilerIdC/CMakeCCompilerId.c       | 521 ++++++++++++++++
+ .../CMakeFiles/3.4.0-rc2/CompilerIdC/a.out         | Bin 0 -> 8616 bytes
+ .../3.4.0-rc2/CompilerIdCXX/CMakeCXXCompilerId.cpp | 510 ++++++++++++++++
+ .../CMakeFiles/3.4.0-rc2/CompilerIdCXX/a.out       | Bin 0 -> 8600 bytes
+ .../CMakeFiles/CMakeDirectoryInformation.cmake     |  16 +
+ src/testing/oCV tests/CMakeFiles/CMakeOutput.log   | 453 ++++++++++++++
+ src/testing/oCV tests/CMakeFiles/Makefile.cmake    | 117 ++++
+ src/testing/oCV tests/CMakeFiles/Makefile2         | 108 ++++
+ .../oCV tests/CMakeFiles/TargetDirectories.txt     |   1 +
+ .../oCV tests/CMakeFiles/cHDR.dir/CXX.includecache | 464 +++++++++++++++
+ .../oCV tests/CMakeFiles/cHDR.dir/DependInfo.cmake |  22 +
+ .../oCV tests/CMakeFiles/cHDR.dir/build.make       | 141 +++++
+ .../oCV tests/CMakeFiles/cHDR.dir/cHDR.cpp.o       | Bin 0 -> 14720 bytes
+ .../CMakeFiles/cHDR.dir/cmake_clean.cmake          |  10 +
+ .../oCV tests/CMakeFiles/cHDR.dir/depend.internal  |  57 ++
+ .../oCV tests/CMakeFiles/cHDR.dir/depend.make      |  57 ++
+ .../oCV tests/CMakeFiles/cHDR.dir/flags.make       |  10 +
+ src/testing/oCV tests/CMakeFiles/cHDR.dir/link.txt |   1 +
+ .../oCV tests/CMakeFiles/cHDR.dir/progress.make    |   3 +
+ src/testing/oCV tests/CMakeFiles/cmake.check_cache |   1 +
+ src/testing/oCV tests/CMakeFiles/feature_tests.bin | Bin 0 -> 8376 bytes
+ src/testing/oCV tests/CMakeFiles/feature_tests.c   |  34 ++
+ src/testing/oCV tests/CMakeFiles/feature_tests.cxx | 405 +++++++++++++
+ src/testing/oCV tests/CMakeFiles/progress.marks    |   1 +
+ src/testing/oCV tests/CMakeLists.txt               |   6 +
+ src/testing/oCV tests/Makefile                     | 178 ++++++
+ src/testing/oCV tests/cHDR                         | Bin 0 -> 42236 bytes
+ src/testing/oCV tests/cHDR.cpp                     |  77 +++
+ src/testing/oCV tests/cmake_install.cmake          |  39 ++
+ 51 files changed, 3735 insertions(+), 2060 deletions(-)
+
+commit a0ee5cada761bf7f179e1fe4d336007c7575caab
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Oct 22 12:27:56 2015 +1030
+
+    pushing gpucode test for build on xu4
+
+ src/readme.txt                                     |   4 +-
+ src/testing/gpucode ahmet akyuz/Makefile           |   5 +
+ src/testing/gpucode ahmet akyuz/README             |  23 +
+ src/testing/gpucode ahmet akyuz/createHDRGPU.cpp   | 145 +++++
+ src/testing/gpucode ahmet akyuz/fragHDRCreate.glsl |  64 ++
+ src/testing/gpucode ahmet akyuz/fragShowHDR.glsl   |  15 +
+ src/testing/gpucode ahmet akyuz/fragTonemap.glsl   | 115 ++++
+ .../gpucode ahmet akyuz/fragTonemapGlobal.glsl     |  99 +++
+ src/testing/gpucode ahmet akyuz/ogl.cpp            | 662 +++++++++++++++++++++
+ src/testing/gpucode ahmet akyuz/ogl.h              |  18 +
+ src/testing/gpucode ahmet akyuz/rgbe.c             | 413 +++++++++++++
+ src/testing/gpucode ahmet akyuz/rgbe.h             |  53 ++
+ src/testing/gpucode ahmet akyuz/utils.cpp          | 288 +++++++++
+ src/testing/gpucode ahmet akyuz/utils.h            | 109 ++++
+ src/testing/gpucode ahmet akyuz/vertHDRCreate.glsl |  17 +
+ src/testing/gpucode ahmet akyuz/vertShowHDR.glsl   |  17 +
+ src/testing/gpucode ahmet akyuz/vertTonemap.glsl   |  17 +
+ 17 files changed, 2063 insertions(+), 1 deletion(-)
+
+commit 30fbed43acd395406ebd2e52cb11c9ab86fdf80a
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Oct 22 11:59:33 2015 +1030
+
+    Hardware Received, models and eth0 MAC
+
+ Enclosure/CAD/Odroid 720p webcam pcb.SLDPRT |  Bin 0 -> 174089 bytes
+ Enclosure/CAD/Odroid Xu4.stp                | 4854 +++++++++++++++++++++++++++
+ odroid deets.md                             |    1 +
+ 3 files changed, 4855 insertions(+)
+
+commit fde0322f834c3abfac4f810656b0a1c43b9e36f9
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Oct 8 16:20:56 2015 +1030
+
+    added purchase order
+
+ Presentation.pptx                                     | Bin 2164582 -> 0 bytes
+ Project Documentation/Presentation.pptx               | Bin 0 -> 2164582 bytes
+ .../ScottR HDR FYP Odroid Order rev2.docx             | Bin 0 -> 58205 bytes
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit c89621bc73f6cbcdd39144cbb45c9081788bc46c
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Sun Oct 4 11:22:36 2015 +0000
+
+    Started source stuff on odroid
+
+ src/readme.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1ca791d8704d4952e665588e5f3ef28a1a72bf6a
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Thu Oct 1 22:30:36 2015 +0930
+
+    Added presentation and some images
+
+ Presentation.pptx                         | Bin 0 -> 2164582 bytes
+ Progress Pics/16bit gamma.png             | Bin 0 -> 10078 bytes
+ Progress Pics/16bit linear.png            | Bin 0 -> 9847 bytes
+ Progress Pics/24bit gamma.png             | Bin 0 -> 10048 bytes
+ Progress Pics/24bit linear.png            | Bin 0 -> 9810 bytes
+ Progress Pics/Video shadow overlay.png    | Bin 0 -> 221822 bytes
+ Progress Pics/video highlight overlay.png | Bin 0 -> 121568 bytes
+ 7 files changed, 0 insertions(+), 0 deletions(-)
+
+commit cde0d95cacd1b75b525361903d7811d4ba74708c
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Mon Aug 31 17:19:24 2015 +0930
+
+    Added copy of shader toy test piece.
+    
+    GLSL fragment shader started
+    Luma clipping detection and culling with adjustable thresholding and bias.
+
+ Progress Pics/Luma Thresholding GLSL.png   | Bin 0 -> 409539 bytes
+ Progress Pics/LumaThresh exclude data.png  | Bin 0 -> 437620 bytes
+ Progress Pics/lumaThresh exclude debug.png | Bin 0 -> 437135 bytes
+ sandboxShader.frag                         | 118 +++++++++++++++++++++++++++++
+ 4 files changed, 118 insertions(+)
+
+commit 24f6a3b143ea9f5fb7e7394ecdb9de0fab875cd7
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Mon Aug 31 14:26:20 2015 +0930
+
+    Initial commit
+
+ README.md | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 020320d60f6a5e13446a99dc83a6e34fc048728e
+Author: Scott Rapson <scottapotamas@gmail.com>
+Date:   Mon Aug 31 14:21:50 2015 +0930
+
+    Initial commit
+
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
